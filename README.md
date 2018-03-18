@@ -1,5 +1,15 @@
+<div>
+  <br/><br />
+  <p align="center">
+    <a href="https://irisplatform.io" target="_blank" align="center">
+        <img src="https://irisplatform.io/static/images/company/iris-by-bambuser-black-horisontal.png" width="280">
+    </a>
+  </p>
+  <br /><br />
+  <h1>Iris player SDK for Android sample code</h1>
+</div>
 
-# Sample code for video playback using the Iris player SDK for Android
+Sample code for video playback using the Iris player SDK for Android.
 
 The sample code in this project will load the latest video found in your Iris environment and start playing it.
 
