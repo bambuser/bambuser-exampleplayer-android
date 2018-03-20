@@ -18,7 +18,7 @@ The sample code in this project will load the latest video found in your Iris en
 
 1. Install Android Studio.
 2. Clone the sample code from this repository, so you have a local directory named i.e. `Sampleplayer`.
-3. Sign up for an account https://irisplatform.io/ if you don't already have one, and make sure you have some videos.
+3. Sign up for an account on https://irisplatform.io/ if you don't already have one, and make sure you have some videos.
 4. Download the Android SDK zip from https://dashboard.irisplatform.io/developer and open the zip file.
 5. Copy the `libbambuser-x.x.x.aar` file to the `Sampleplayer/libbambuser` folder.
 6. Import the `Sampleplayer` project in Android Studio.
