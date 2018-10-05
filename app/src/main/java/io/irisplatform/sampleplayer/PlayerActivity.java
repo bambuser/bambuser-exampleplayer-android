@@ -75,7 +75,7 @@ public class PlayerActivity extends AppCompatActivity {
 
     void getLatestResourceUri() {
         Request request = new Request.Builder()
-                .url("https://api.irisplatform.io/broadcasts")
+                .url("https://api.bambuser.com/broadcasts")
                 .addHeader("Accept", "application/vnd.bambuser.v1+json")
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization", "Bearer " + API_KEY)
