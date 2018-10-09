@@ -1,4 +1,4 @@
-package io.irisplatform.sampleplayer;
+package com.bambuser.exampleplayer;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
