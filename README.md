@@ -32,3 +32,5 @@ The sample code in this project will load the latest video found in your Bambuse
 * [Bambuser Docs](https://bambuser.com/docs)
 
 * [Bambuser AB](https://bambuser.com)
+
+* Our guide for building a player app from scratch can be found at [Player guide](https://bambuser.com/docs/playback/android-player/).
