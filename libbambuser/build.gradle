@@ -1,2 +1,2 @@
 configurations.maybeCreate("default")
-artifacts.add("default", file('libbambuser-0.9.14.aar'))
+artifacts.add("default", file('libbambuser-0.9.16.aar'))
