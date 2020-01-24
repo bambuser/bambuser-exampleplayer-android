@@ -1,14 +1,18 @@
-package com.bambuser.exampleplayer;
+package com.example.myplayer;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.MotionEvent;
-import android.view.SurfaceView;
+import android.view.View;
 import android.widget.MediaController;
 import android.widget.TextView;
 
 import com.bambuser.broadcaster.BroadcastPlayer;
 import com.bambuser.broadcaster.PlayerState;
+import com.bambuser.broadcaster.SurfaceViewWithAutoAR;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,16 +25,18 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class PlayerActivity extends AppCompatActivity {
-    private static final String APPLICATION_ID = "CHANGEME";
-    private static final String API_KEY = "CHANGEME";
+public class MainActivity extends AppCompatActivity {
+    private static final String APPLICATION_ID = "PLEASE INSERT YOUR APPLICATION SPECIFIC ID PROVIDED BY BAMBUSER";
+    private static final String API_KEY = "PLEASE INSERT AN API KEY PROVIDED BY BAMBUSER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player);
+        setContentView(R.layout.activity_main);
+        mDefaultDisplay = getWindowManager().getDefaultDisplay();
         mVideoSurface = findViewById(R.id.VideoSurfaceView);
         mPlayerStatusTextView = findViewById(R.id.PlayerStatusTextView);
+        mPlayerContentView = findViewById(R.id.PlayerContentView);
     }
 
     @Override
@@ -44,6 +50,7 @@ public class PlayerActivity extends AppCompatActivity {
         if (mMediaController != null)
             mMediaController.hide();
         mMediaController = null;
+
     }
 
     @Override
@@ -122,6 +129,7 @@ public class PlayerActivity extends AppCompatActivity {
         mBroadcastPlayer = new BroadcastPlayer(this, resourceUri, APPLICATION_ID, mBroadcastPlayerObserver);
         mBroadcastPlayer.setSurfaceView(mVideoSurface);
         mBroadcastPlayer.load();
+
     }
 
     BroadcastPlayer.Observer mBroadcastPlayerObserver = new BroadcastPlayer.Observer() {
@@ -131,8 +139,8 @@ public class PlayerActivity extends AppCompatActivity {
                 mPlayerStatusTextView.setText("Status: " + playerState);
             if (playerState == PlayerState.PLAYING || playerState == PlayerState.PAUSED || playerState == PlayerState.COMPLETED) {
                 if (mMediaController == null && mBroadcastPlayer != null && !mBroadcastPlayer.isTypeLive()) {
-                    mMediaController = new MediaController(PlayerActivity.this);
-                    mMediaController.setAnchorView(mVideoSurface);
+                    mMediaController = new MediaController(MainActivity.this);
+                    mMediaController.setAnchorView(mPlayerContentView);
                     mMediaController.setMediaPlayer(mBroadcastPlayer);
                 }
                 if (mMediaController != null) {
@@ -149,12 +157,36 @@ public class PlayerActivity extends AppCompatActivity {
         }
         @Override
         public void onBroadcastLoaded(boolean live, int width, int height) {
+            Point size = getScreenSize();
+            float screenAR = size.x / (float) size.y;
+            float videoAR = width / (float) height;
+            float arDiff = screenAR - videoAR;
+            mVideoSurface.setCropToParent(Math.abs(arDiff) < 0.2);
+
         }
     };
 
+    private Point getScreenSize() {
+        if (mDefaultDisplay == null)
+            mDefaultDisplay = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        try {
+            // this is officially supported since SDK 17 and said to work down to SDK 14 through reflection,
+            // so it might be everything we need.
+            mDefaultDisplay.getClass().getMethod("getRealSize", Point.class).invoke(mDefaultDisplay, size);
+        } catch (Exception e) {
+            // fallback to approximate size.
+            mDefaultDisplay.getSize(size);
+        }
+        return size;
+    }
+
+
     final OkHttpClient mOkHttpClient = new OkHttpClient();
-    SurfaceView mVideoSurface;
-    TextView mPlayerStatusTextView;
     BroadcastPlayer mBroadcastPlayer;
-    MediaController mMediaController;
+    MediaController mMediaController = null;
+    SurfaceViewWithAutoAR mVideoSurface;
+    TextView mPlayerStatusTextView;
+    View mPlayerContentView;
+    Display mDefaultDisplay;
 }

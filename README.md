@@ -17,14 +17,14 @@ The sample code in this project will load the latest video found in your Bambuse
 ## Getting started
 
 1. Install Android Studio.
-2. Clone the sample code from this repository, so you have a local directory named i.e. `Sampleplayer`.
+2. Clone the sample code from this repository, so you have a local directory named i.e. `Myplayer`.
 3. Sign up for an account on https://bambuser.com/ if you don't already have one, and make sure you have some videos.
 4. Download the Android SDK zip from https://dashboard.bambuser.com/developer and open the zip file.
-5. Copy the `libbambuser-x.x.x.aar` file to the `Sampleplayer/libbambuser` folder.
-6. Import the `Sampleplayer` project in Android Studio.
-7. Edit `Sampleplayer/libbambuser/build.gradle` and point it to the version of the `.aar` file.
+5. Copy the `libbambuser-x.x.x.aar` file to the `Myplayer/libbambuser` folder.
+6. Import the `Myplayer` project in Android Studio.
+7. Edit `Myplayer/libbambuser/build.gradle` and point it to the version of the `.aar` file.
 8. Generate an `applicationId` and an `API key` at https://dashboard.bambuser.com/developer
-9. Open the `PlayerActivity.java` file in Android Studio and insert the `applicationId` and an `API key` generated above.
+9. Open the `MainActivity.java` file in Android Studio and insert the `applicationId` and an `API key` generated above.
 10. Run the sample code on your device
 
 ## More information

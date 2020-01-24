@@ -1,1 +1,2 @@
 include ':app', ':libbambuser'
+rootProject.name='My player'

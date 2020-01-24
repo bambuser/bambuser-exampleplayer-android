@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Sampleplayer.iml" filepath="$PROJECT_DIR$/Sampleplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/My player.iml" filepath="$PROJECT_DIR$/My player.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libbambuser/libbambuser.iml" filepath="$PROJECT_DIR$/libbambuser/libbambuser.iml" />
     </modules>
